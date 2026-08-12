@@ -1,3 +1,4 @@
+import os
 import time
 import requests
 from flask import Response, Flask
@@ -37,4 +38,5 @@ tensorflow_serving_model_available{model="sentiment-model",env="production"} 0
         return Response(error_metrics, mimetype='text/plain')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    port = int(os.environ.get('PORT', 8000))
+    app.run(host='0.0.0.0', port=port)
