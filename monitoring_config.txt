@@ -1,3 +1,4 @@
 prometheus_config {
   enable: true
+  path: "/monitoring/prometheus/metrics"
 }
