@@ -8,6 +8,10 @@ app = Flask(__name__)
 # URL Railway TensorFlow Serving kamu
 RAILWAY_URL = "https://servingapp-production.up.railway.app/v1/models/sentiment-model"
 
+@app.route('/')
+def home():
+    return "Exporter is running successfully!", 200
+
 @app.route('/metrics')
 def metrics():
     try:
