@@ -5,7 +5,7 @@ from flask import Response, Flask
 app = Flask(__name__)
 
 # URL Railway TensorFlow Serving kamu
-RAILWAY_URL = "https://servingapp-production.up.railway.app/v1/models/sentiment-model"
+RAILWAY_URL = "https://DOMAIN_MODEL_UTAMA_KAMU.up.railway.app/v1/models/sentiment-model"
 
 @app.route('/metrics')
 def metrics():
