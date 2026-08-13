@@ -1,12 +1,13 @@
-FROM python:3.9-slim
+FROM tensorflow/serving:latest
 
-WORKDIR /app
+COPY ./model /models/sentiment-model
+COPY monitoring_config.txt /models/monitoring_config.txt
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+ENV MODEL_NAME=sentiment-model
 
-COPY exporter.py .
-
-EXPOSE 8000
-
-CMD ["python", "exporter.py"]
+CMD tensorflow_model_server \
+    --port=8500 \
+    --rest_api_port=${PORT:-8501} \
+    --model_name=$MODEL_NAME \
+    --model_base_path=/models/$MODEL_NAME \
+    --monitoring_config_file=/models/monitoring_config.txt
